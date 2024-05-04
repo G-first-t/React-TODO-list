@@ -28,6 +28,19 @@ const TodoApp=()=>{
         setTasks([...tasks,newTask]);
         setText("");
     }
+
+    const deleteTask=(id)=>{
+        setTasks(tasks.filter(task=>task.id !==id));
+    }
+    const toggleCompleted=(id)=>{
+        setTasks(tasks.map(task=>{
+            if(task.id===id){
+                return{ ...tasks,completed:!task.completed}
+            }else{
+                return task;
+            }
+        }))
+    }
 return(
     <div>
         <div>
