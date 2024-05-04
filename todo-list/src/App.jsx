@@ -2,7 +2,7 @@ import TodoApp from "./components/Todo";
 
 const App=()=>{
   return(
-    <div>
+    <div className="App">
       <h1>ToDo List</h1>
      <TodoApp/>
     </div>
