@@ -1,53 +1,58 @@
 import { useState } from "react";
 
-const TodoApp=()=>{
 
-    const[tasks,setTasks]=useState(
-        {
-            id:1,
-            text:"waking up early in the morning",
-            completed:false
-        },
-        {
-            id:2,
-            text:"bathing and brushing teeth",
-            completed:true
-        },
-        {
-            id:3,
-            text:"studying",
-            completed:false
-        });
-
-    const[text,setText]=useState("");
-    const addTask=(text)=>{
-        const newTask={
-            id:Date.now,text,
-            completed:false
-        };
-        setTasks([...tasks,newTask]);
-        setText("");
+function TodoApp() {
+    const [tasks, setTasks] = useState([
+    {
+    id: 1,
+    text: 'Doctor Appointment',
+    completed: true
+    },
+    {
+    id: 2,
+    text: 'Meeting at School',
+    completed: false
     }
-
-    const deleteTask=(id)=>{
-        setTasks(tasks.filter(task=>task.id !==id));
+    ]);
+    
+    const [text, setText] = useState('');
+   function addTask(text) {
+    const newTask = {
+    id: Date.now(),
+    text,
+    completed: false
+    };
+    setTasks([...tasks, newTask]);
+    setText('');
     }
-    const toggleCompleted=(id)=>{
-        setTasks(tasks.map(task=>{
-            if(task.id===id){
-                return{ ...tasks,completed:!task.completed}
-            }else{
-                return task;
-            }
-        }))
+   function deleteTask(id) {
+    setTasks(tasks.filter(task => task.id !== id));
     }
-return(
-    <div>
-        <div>
-            <input type="text" />
-            <button onClick={()=>addTask(text)}>Add</button>
-        </div>
+   function toggleCompleted(id) {
+    setTasks(tasks.map(task => {
+    if (task.id === id) {
+    return {  ...tasks, completed: !task.completed};
+    } else {
+    return task;
+    } 
+    }));
+    }
+   return (
+    <div className="todo-list">
+    {tasks.map(task => (
+    <TodoItem
+    key={task.id} 
+    task={task}
+    deleteTask={deleteTask}
+    toggleCompleted={toggleCompleted} 
+    />
+    ))}
+   <input
+    value={text}
+    onChange={e => setText(e.target.value)} 
+    />
+   <button onClick={() => addTask(text)}>Add</button>
     </div>
-);
-}
-export default TodoApp;
+    );
+   }
+   export default TodoApp;
