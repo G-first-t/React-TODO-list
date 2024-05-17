@@ -91,3 +91,14 @@ h1{
     padding-top: 10px;
     margin-bottom: 10px;
 }
+.todo-list-item h3{
+    font-size: 25px;
+    color: rgb(0,230,122);
+    font-weight: bold;
+    margin: 0px;
+}
+.todo-list-item p{
+    font-size: 14px;
+    color: rgb(161,161,161);
+    margin-top: 0px;
+}
