@@ -1,4 +1,7 @@
+import { useState } from "react";
+
 const App=()=>{
+  const [isCompleteScreen,  setIsCompleteScreen]= useState(false)
 return(
   <>
     <div className="App">
@@ -19,8 +22,14 @@ return(
 
              </div>
              <div class="btn-area">
-                    <button className="secondaryBtn">Todo</button>
-                    <button className="secondaryBtn">Completed</button>
+                    <button 
+                    className={`secondaryBtn ${isCompleteScreen===false && "active"}`}
+                    onClick={()=>setIsCompleteScreen(false)}
+                    >Todo</button>
+                    <button 
+                    className={`secondaryBtn ${isCompleteScreen===true && "active"}`}
+                    onClick={()=>setIsCompleteScreen(true)}
+                    >Completed</button>
              </div>
                <div className="todo-list">
                   <div className="todo-list-item">
