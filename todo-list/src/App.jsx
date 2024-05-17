@@ -5,6 +5,20 @@ import { BsCheckLg } from "react-icons/bs";
 
 const App=()=>{
   const [isCompleteScreen,  setIsCompleteScreen]= useState(false)
+  const [allTodo,setTodo]=useState([]);
+  const [newTitle,setNewTitle]=useState("");
+  const [newDescription,setNewDescription]=useState("");
+
+  const handleAdd=()=>{
+       let newItem={
+        title:newTitle,
+        description:newDescription
+       }
+
+       let updatedTodo=[...allTodo];
+       updatedTodo.push(newItem);
+       setTodo(updatedTodo);
+  }
 return(
   <>
     <div className="App">
@@ -13,14 +27,25 @@ return(
              <div className="todo-input">
                    <div className="todo-input-item">
                     <label>Title</label>
-                    <input type="text" placeholder="What's the task's Title" />
+                    <input type="text"
+                     value={newTitle} 
+                     onChange={(e)=>setNewTitle(e.target.value)}
+                     placeholder="What's the task's Title" />
                    </div>
                    <div className="todo-input-item">
                     <label>Description</label>
-                    <input type="text" placeholder="What's the task's Description" />
+                    <input 
+                    type="text"
+                    value={newDescription}
+                    onChange={(e)=>setNewDescription(e.target.value)}
+                     placeholder="What's the task's Description" />
                    </div>
                    <div className="todo-input-item">
-                    <button type='button' className="primaryBtn">Add</button>
+                    <button 
+                    type='button' 
+                    className="primaryBtn"
+                    onClick={handleAdd}
+                    >Add</button>
                    </div>
 
              </div>
@@ -35,17 +60,21 @@ return(
                     >Completed</button>
              </div>
                <div className="todo-list">
-                  <div className="todo-list-item">
-                    <div>
-                    <h3>Task1</h3>
-                    <p>Description </p>
-                    </div>
+                 {allTodo.map((item,index)=>{
+                  return(
+                    <div className="todo-list-item" key={index}>
                        <div>
+                          <h3>{item.title}</h3>
+                          <p>{item.description} </p>
+                      </div>
+                        <div>
                           <AiOutlineDelete   className="icon"/>
                           <BsCheckLg className="check-icon"/>
-                     </div>
-                  </div>
+                       </div>
+                    </div>
                   
+                  )
+                 })}
               </div>
            </div>
     </div>
