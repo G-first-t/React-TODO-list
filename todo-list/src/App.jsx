@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { MdDelete } from "react-icons/md";
-import { BsCheckSquare } from "react-icons/bs";
+import { AiOutlineDelete } from "react-icons/ai";
+
+import { BsCheckLg } from "react-icons/bs";
 
 const App=()=>{
   const [isCompleteScreen,  setIsCompleteScreen]= useState(false)
@@ -35,13 +36,16 @@ return(
              </div>
                <div className="todo-list">
                   <div className="todo-list-item">
+                    <div>
                     <h3>Task1</h3>
                     <p>Description </p>
+                    </div>
+                       <div>
+                          <AiOutlineDelete   className="icon"/>
+                          <BsCheckLg className="check-icon"/>
+                     </div>
                   </div>
-                  <div>
-                  <MdDelete  className="icon"/>
-                  <BsCheckSquare  className="check-icon"/>
-                  </div>
+                  
               </div>
            </div>
     </div>
